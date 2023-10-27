@@ -10,7 +10,8 @@ const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
-  },  {
+  },
+  {
     path: 'aluno-login',
     loadChildren: () => import('./aluno-login/aluno-login.module').then( m => m.AlunoLoginPageModule)
   },
@@ -29,7 +30,11 @@ const routes: Routes = [
   {
     path: 'home-aluno',
     loadChildren: () => import('./home-aluno/home-aluno.module').then( m => m.HomeAlunoPageModule)
+  },  {
+    path: 'alunos-professores',
+    loadChildren: () => import('./alunos-professores/alunos-professores.module').then( m => m.AlunosProfessoresPageModule)
   },
+
 
 ];
 
