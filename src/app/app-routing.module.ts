@@ -34,7 +34,20 @@ const routes: Routes = [
   {
     path: 'coordenador-login',
     loadChildren: () => import('./coordinator-login/coordinator-login.module').then( m => m.CoordinatorLoginPageModule)
+  },
+  {
+    path: 'home-coordenador',
+    loadChildren: () => import('./home-coordinator/home-coordinator.module').then( m => m.HomeCoordinatorPageModule)
+  },
+  {
+    path: 'coordenador-professores',
+    loadChildren: () => import('./coordinator-professors/coordinator-professors.module').then( m => m.CoordinatorProfessorsPageModule)
+  },
+  {
+    path: 'coordenador-cadastro-professores',
+    loadChildren: () => import('./coordinator-register-professors/coordinator-register-professors.module').then( m => m.CoordinatorRegisterProfessorsPageModule)
   }
+
 
 
 

@@ -1,0 +1,84 @@
+<ion-menu contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title style="color: brown; font-weight: bold;">Fatec</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <ion-item routerLink="/home-coordenador">Home</ion-item>
+      <ion-item routerLink="/coordenador-aula">Disciplina</ion-item>
+      <ion-item routerLink="/coordenador-professores">Professores</ion-item>
+      <ion-item routerLink="/coordenador-turma">Turmas</ion-item>
+      <ion-item routerLink="/coordenador-curso">Cursos</ion-item>
+      <ion-item routerLink="/coordenador-sala">Salas</ion-item>
+      <ion-item routerLink="/home" style="color: brown;">Sair</ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+
+<div class="row mt-5">
+  <div class="col-6 m-auto">
+    <form [formGroup]="formGroupProfessor">
+      <div class="mb-3">
+        <div class="display-6 text-center">
+          Cadastro de Professores
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="name" class="form-label">Nome:</label>
+        <input type="text" formControlName="name" class="form-control" id="name" placeholder="Nome">
+        <div *ngIf="submitted && name.invalid">
+          <small class="text-danger">Nome inválido!</small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email:</label>
+        <input type="email" formControlName="email" class="form-control" id="email" placeholder="Email">
+        <div *ngIf="submitted && email.invalid">
+          <small class="text-danger">Email inválido!</small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Senha:</label>
+        <input type="password" formControlName="password" class="form-control" id="password" placeholder="Senha">
+        <div *ngIf="submitted && password.invalid">
+          <small class="text-danger">Senha inválida!</small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="education" class="form-label">Formação:</label>
+        <input type="text" formControlName="education" class="form-control" id="education" placeholder="Formação">
+        <div *ngIf="submitted && education.invalid">
+          <small class="text-danger">Formação inválida!</small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-check-label" for="flexSwitchCheckChecked">Professor ativo</label>
+        <div class="form-check form-switch mt-2 ms-1">
+          <input class="form-check-input" style="width: 50px; height: 25px;" formControlName="condition" type="checkbox"
+            id="condition">
+        </div>
+      </div>
+      <div class="mb-3 d-flex justify-content-end gap-2">
+        <button *ngIf="isEditing === false" class="btn btn-success" (click)="save()">Salvar</button>
+        <button *ngIf="isEditing === true" class="btn btn-success" (click)="save()">Atualizar</button>
+        <button class="btn btn-danger" (click)="cancel()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<ion-router-outlet id="main-content"></ion-router-outlet>
+
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="color: brown; font-weight: bold;">Fatec</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
