@@ -20,6 +20,7 @@
 
 <ion-router-outlet id="main-content"></ion-router-outlet>
 
+
 <ion-header>
   <ion-toolbar>
     <ion-title style="color: brown; font-weight: bold;">Fatec</ion-title>
@@ -32,28 +33,31 @@
 
 <ion-content [fullscreen]="true">
 
-  <h1 class="ion-text-center" style="color: rgb(0, 0, 0); font-weight: bold; font-size: 50px;">Agendamento de Aulas</h1>
   <br>
-  <br>
+  <h1 class="ion-text-center" style="color: rgb(0, 0, 0); font-weight: bold; font-size: 50px;">Disciplinas</h1>
 
+<ion-grid>
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="6" >
+      <ion-list>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>#</ion-card-title>
+            <ion-card-subtitle>#</ion-card-subtitle>
+          </ion-card-header>
 
-  <ion-grid>
-    <ion-row class="ion-justify-content-center">
-      <ion-col size="6" >
-        <ion-list>
-          <ion-item>
-            <ion-select label="Selecione a turma...">
-              <ion-select-option value="#">#</ion-select-option>
-            </ion-select>
-          </ion-item>
-        </ion-list>
-      </ion-col>
-    </ion-row>
-    <ion-row class="ion-justify-content-center">
-      <br>
-      <br>
-      <ion-button size="large" style="--background: brown; --border-radius: 6px; font-weight: bold; margin: auto;">Continuar</ion-button>
-    </ion-row>
-  </ion-grid>
+          <ion-card-content>
+            ####
+          </ion-card-content>
+        </ion-card>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+  <ion-row class="ion-justify-content-center">
+    <ion-button routerLink="/coordenador-cadastro-disciplina" size="large" style="--background: brown; --border-radius: 6px; font-weight: bold; margin: auto;">
+      Cadastrar
+    </ion-button>
+  </ion-row>
+</ion-grid>
 
 </ion-content>

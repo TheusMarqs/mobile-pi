@@ -46,7 +46,16 @@ const routes: Routes = [
   {
     path: 'coordenador-cadastro-professores',
     loadChildren: () => import('./coordinator-register-professors/coordinator-register-professors.module').then( m => m.CoordinatorRegisterProfessorsPageModule)
+  },
+  {
+    path: 'coordenador-disciplina',
+    loadChildren: () => import('./coordinator-discipline/coordinator-discipline.module').then( m => m.CoordinatorDisciplinePageModule)
+  },
+  {
+    path: 'coordenador-cadastro-disciplina',
+    loadChildren: () => import('./coordinator-register-discipline/coordinator-register-discipline.module').then( m => m.CoordinatorRegisterDisciplinePageModule)
   }
+
 
 
 
