@@ -10,7 +10,7 @@ import { ProfessorService } from '../professor.service';
 })
 export class CoordinatorRegisterProfessorsPage implements OnInit {
 
-  formGroupProfessor: FormGroup;
+  formGroupProfessor : FormGroup;
   submitted: boolean = false;
   isEditing: boolean = false;
 
