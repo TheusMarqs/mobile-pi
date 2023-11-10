@@ -62,10 +62,28 @@ const routes: Routes = [
   {
     path: 'coordenador-cadastro-sala',
     loadChildren: () => import('./coordinator-register-classroom/coordinator-register-classroom.module').then( m => m.CoordinatorRegisterClassroomPageModule)
-  },  {
+  },
+  {
     path: 'home-professor',
     loadChildren: () => import('./home-professor/home-professor.module').then( m => m.HomeProfessorPageModule)
+  },
+  {
+    path: 'coordenador-curso',
+    loadChildren: () => import('./coordinator-course/coordinator-course.module').then( m => m.CoordinatorCoursePageModule)
+  },
+  {
+    path: 'coordenador-cadastro-curso',
+    loadChildren: () => import('./coordinator-register-course/coordinator-register-course.module').then( m => m.CoordinatorRegisterCoursePageModule)
+  },
+  {
+    path: 'coordenador-cadastro-turmas',
+    loadChildren: () => import('./coordinator-register-team/coordinator-register-team.module').then( m => m.CoordinatorRegisterTeamPageModule)
+  },
+  {
+    path: 'coordenador-turmas',
+    loadChildren: () => import('./coordinator-team/coordinator-team.module').then( m => m.CoordinatorTeamPageModule)
   }
+
 
 
 
