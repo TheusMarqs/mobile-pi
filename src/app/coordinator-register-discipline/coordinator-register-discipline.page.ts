@@ -21,9 +21,8 @@ export class CoordinatorRegisterDisciplinePage implements OnInit {
     this.formGroupDiscipline = formBuilder.group({
       id: [],
       name: ['', [Validators.required, Validators.pattern(/\S/)]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.pattern(/\S/)]],
-      education: ['', [Validators.required, Validators.pattern(/\S/)]],
+      workload: ['', [Validators.required, Validators.pattern]],
+      course: ['', [Validators.required, Validators.pattern(/\S/)]],
       condition: [false]
     });
   }
@@ -72,14 +71,11 @@ export class CoordinatorRegisterDisciplinePage implements OnInit {
   get name(): any {
     return this.formGroupDiscipline.get("name");
   }
-  get email(): any {
-    return this.formGroupDiscipline.get("email");
+  get workload(): any {
+    return this.formGroupDiscipline.get("workload");
   }
-  get password(): any {
-    return this.formGroupDiscipline.get("password");
-  }
-  get education(): any {
-    return this.formGroupDiscipline.get("education");
+  get course(): any {
+    return this.formGroupDiscipline.get("course");
   }
 
 }

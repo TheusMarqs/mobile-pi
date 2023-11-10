@@ -54,7 +54,21 @@ const routes: Routes = [
   {
     path: 'coordenador-cadastro-disciplina',
     loadChildren: () => import('./coordinator-register-discipline/coordinator-register-discipline.module').then( m => m.CoordinatorRegisterDisciplinePageModule)
+  },
+  {
+    path: 'coordenador-sala',
+    loadChildren: () => import('./coordinator-classroom/coordinator-classroom.module').then( m => m.CoordinatorClassroomPageModule)
+  },
+  {
+    path: 'coordenador-cadastro-sala',
+    loadChildren: () => import('./coordinator-register-classroom/coordinator-register-classroom.module').then( m => m.CoordinatorRegisterClassroomPageModule)
+  },  {
+    path: 'home-professor',
+    loadChildren: () => import('./home-professor/home-professor.module').then( m => m.HomeProfessorPageModule)
   }
+
+
+
 
 
 

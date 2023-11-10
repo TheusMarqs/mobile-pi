@@ -13,6 +13,7 @@
       <ion-item routerLink="/coordenador-turma">Turmas</ion-item>
       <ion-item routerLink="/coordenador-curso">Cursos</ion-item>
       <ion-item routerLink="/coordenador-sala">Salas</ion-item>
+      <ion-item routerLink="/coordenador-time">Horário</ion-item>
       <ion-item routerLink="/home" style="color: brown;">Sair</ion-item>
     </ion-list>
   </ion-content>
@@ -26,7 +27,7 @@
           <div class="mb-3">
             <div class="display-6 text-center">
               <br>
-              <h1 style="color: brown; font-weight: bold;">Cadastro de Professores</h1>
+              <h1 style="color: brown; font-weight: bold;">Cadastro de Disciplina</h1>
             </div>
           </div>
           <br>
@@ -38,29 +39,18 @@
           </div>
           <br>
           <div class="mb-3">
-            <ion-input type="email" formControlName="email" class="form-control" label="Email:" label-placement="floating" fill="outline" id="email" placeholder="Email"></ion-input>
-            <div *ngIf="submitted && email.invalid">
-              <small class="text-danger">Email inválido!</small>
+            <ion-input type="number" formControlName="workload" class="form-control" label="Carga Horária:" label-placement="floating" fill="outline" id="workload" placeholder="Carga Horária"></ion-input>
+            <div *ngIf="submitted && workload.invalid">
+              <small class="text-danger">Carga Horária!</small>
             </div>
           </div>
           <br>
           <div class="mb-3">
-            <ion-input type="password" formControlName="password" class="form-control" label="Senha:" label-placement="floating" fill="outline" id="password" placeholder="Senha"></ion-input>
-            <div *ngIf="submitted && password.invalid">
-              <small class="text-danger">Senha inválida!</small>
-            </div>
-          </div>
-          <br>
-          <div class="mb-3">
-            <ion-input type="text" formControlName="education" class="form-control" label="Formação:" label-placement="floating" fill="outline" id="education" placeholder="Formação"></ion-input>
-            <div *ngIf="submitted && education.invalid">
-              <small class="text-danger">Formação inválida!</small>
-            </div>
-          </div>
-          <br>
-          <div class="mb-3">
-            <div class="form-check form-switch mt-2 ms-1">
-              <ion-checkbox style="--size: 30px;" id="condition">Professor Ativo</ion-checkbox>
+            <ion-select label="Default label" placeholder="Curso Associado" formControlName="course" class="form-control" label="Curso Associado:" label-placement="floating" fill="outline" id="course">
+              <ion-select-option value="##">##</ion-select-option>
+            </ion-select>
+            <div *ngIf="submitted && course.invalid">
+              <small class="text-danger">Curso inválido!</small>
             </div>
           </div>
           <br>

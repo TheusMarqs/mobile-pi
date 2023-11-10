@@ -19,15 +19,24 @@
   </ion-content>
 </ion-menu>
 
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="color: brown; font-weight: bold;">Fatec</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
 <ion-grid>
   <ion-row class="ion-justify-content-center">
     <div class="row mt-5">
       <div class="col-6 m-auto">
-        <form [formGroup]="formGroupProfessor">
+        <form [formGroup]="formGroupClassroom">
           <div class="mb-3">
             <div class="display-6 text-center">
               <br>
-              <h1 style="color: brown; font-weight: bold;">Cadastro de Professores</h1>
+              <h1 style="color: brown; font-weight: bold;">Cadastro de Sala</h1>
             </div>
           </div>
           <br>
@@ -39,29 +48,18 @@
           </div>
           <br>
           <div class="mb-3">
-            <ion-input type="email" formControlName="email" class="form-control" label="Email:" label-placement="floating" fill="outline" id="email" placeholder="Email"></ion-input>
-            <div *ngIf="submitted && email.invalid">
-              <small class="text-danger">Email inválido!</small>
+            <ion-input type="number" formControlName="capacity" class="form-control" label="Capacidade Máxima:" label-placement="floating" fill="outline" id="capacity" placeholder="Capacidade Máxima:"></ion-input>
+            <div *ngIf="submitted && capacity.invalid">
+              <small class="text-danger">Capacidade não permitida!</small>
             </div>
           </div>
           <br>
           <div class="mb-3">
-            <ion-input type="password" formControlName="password" class="form-control" label="Senha:" label-placement="floating" fill="outline" id="password" placeholder="Senha"></ion-input>
-            <div *ngIf="submitted && password.invalid">
-              <small class="text-danger">Senha inválida!</small>
-            </div>
-          </div>
-          <br>
-          <div class="mb-3">
-            <ion-input type="text" formControlName="education" class="form-control" label="Formação:" label-placement="floating" fill="outline" id="education" placeholder="Formação"></ion-input>
-            <div *ngIf="submitted && education.invalid">
-              <small class="text-danger">Formação inválida!</small>
-            </div>
-          </div>
-          <br>
-          <div class="mb-3">
-            <div class="form-check form-switch mt-2 ms-1">
-              <ion-checkbox style="--size: 30px;" id="condition">Professor Ativo</ion-checkbox>
+            <ion-select label="Default label" placeholder="Tipo" formControlName="type" class="form-control" label="Tipo:" label-placement="floating" fill="outline" id="type">
+              <ion-select-option value="##">##</ion-select-option>
+            </ion-select>
+            <div *ngIf="submitted && type.invalid">
+              <small class="text-danger">Tipo inválido!</small>
             </div>
           </div>
           <br>
@@ -78,12 +76,3 @@
 
 <ion-router-outlet id="main-content"></ion-router-outlet>
 
-
-<ion-header>
-  <ion-toolbar>
-    <ion-title style="color: brown; font-weight: bold;">Fatec</ion-title>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
