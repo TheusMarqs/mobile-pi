@@ -20,7 +20,7 @@ export class CoordinatorRegisterClassroomPage implements OnInit {
 
     this.formGroupClassroom = formBuilder.group({
       id: [],
-      name: ['', [Validators.required, Validators.pattern(/\S/)]],
+      number: ['', [Validators.required, Validators.pattern(/\S/)]],
       capacity: ['', [Validators.required, Validators.pattern]],
       type: ['', [Validators.required, Validators.pattern(/\S/)]],
       condition: [false]
@@ -68,8 +68,8 @@ export class CoordinatorRegisterClassroomPage implements OnInit {
     this.router.navigate(['coordenador/exibir-sala']);
   }
 
-  get name(): any {
-    return this.formGroupClassroom.get("name");
+  get number(): any {
+    return this.formGroupClassroom.get("number");
   }
   get capacity(): any {
     return this.formGroupClassroom.get("capacity");

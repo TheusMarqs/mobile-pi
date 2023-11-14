@@ -7,7 +7,7 @@ import { Team } from './Team';
   providedIn: 'root'
 })
 export class TeamService {
-  url = "http://localhost:8080/Teams";
+  url = "http://localhost:8080/teams";
   constructor(private http: HttpClient) { }
 
   getTeams(): Observable<Team[]> {

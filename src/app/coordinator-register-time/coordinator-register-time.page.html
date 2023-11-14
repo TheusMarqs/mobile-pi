@@ -1,0 +1,66 @@
+<ion-menu contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title style="color: brown; font-weight: bold;">Fatec</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <ion-item routerLink="/home-coordenador">Home</ion-item>
+      <ion-item routerLink="/coordenador-disciplina">Disciplina</ion-item>
+      <ion-item routerLink="/coordenador-professores">Professores</ion-item>
+      <ion-item routerLink="/coordenador-turma">Turmas</ion-item>
+      <ion-item routerLink="/coordenador-curso">Cursos</ion-item>
+      <ion-item routerLink="/coordenador-sala">Salas</ion-item>
+      <ion-item routerLink="/coordenador-time">Horário</ion-item>
+      <ion-item routerLink="/home" style="color: brown;">Sair</ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-grid>
+  <ion-row class="ion-justify-content-center">
+    <div class="row mt-5">
+      <div class="col-6 m-auto">
+        <form [formGroup]="formGroupTime">
+          <div class="mb-3">
+            <div class="display-6 text-center">
+              <br>
+              <h1 style="color: brown; font-weight: bold;">Cadastro de Horário</h1>
+              <br><h2 style="color: brown; font-weight: bold;">####</h2>
+            </div>
+          </div>
+          <br>
+          <div class="mb-3">
+            <ion-select label="Default label" placeholder="Horário" formControlName="time" class="form-control" label="Horário:" label-placement="floating" fill="outline" id="time">
+              <ion-select-option value="##">##</ion-select-option>
+            </ion-select>
+            <div *ngIf="submitted && time.invalid">
+              <small class="text-danger">Horário inválido!</small>
+            </div>
+          </div>
+          <br>
+          <br>
+          <div class="mb-3 d-flex justify-content-end gap-2">
+            <ion-button style="--background: brown;" *ngIf="isEditing === false" class="btn btn-success" (click)="save()">Salvar</ion-button>
+            <ion-button style="--background: brown;" *ngIf="isEditing === true" class="btn btn-success" (click)="save()">Atualizar</ion-button>
+            <ion-button style="--background: brown;" class="btn btn-danger" (click)="cancel()">Cancelar</ion-button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </ion-row>
+</ion-grid>
+
+<ion-router-outlet id="main-content"></ion-router-outlet>
+
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="color: brown; font-weight: bold;">Fatec</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>

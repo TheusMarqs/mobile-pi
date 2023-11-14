@@ -3,5 +3,5 @@ export interface Team{
   semester: number;
   period: string;
   course: number;
-  student: number;
+  students: number;
 }

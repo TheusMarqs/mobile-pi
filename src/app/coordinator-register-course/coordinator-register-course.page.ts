@@ -22,7 +22,7 @@ export class CoordinatorRegisterCoursePage implements OnInit {
       id: [],
       name: ['', [Validators.required, Validators.pattern(/\S/)]],
       workload: ['', [Validators.required, Validators.pattern]],
-      semester: ['', [Validators.required, Validators.pattern(/\S/)]],
+      duration: ['', [Validators.required, Validators.pattern(/\S/)]],
       condition: [false]
     });
   }
@@ -74,7 +74,7 @@ export class CoordinatorRegisterCoursePage implements OnInit {
   get workload(): any {
     return this.formGroupCourse.get("workload");
   }
-  get semester(): any {
-    return this.formGroupCourse.get("semester");
+  get duration(): any {
+    return this.formGroupCourse.get("duration");
   }
 }

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Classroom } from './Classroom';
 
 @Injectable({
@@ -8,27 +9,26 @@ import { Classroom } from './Classroom';
 })
 export class ClassroomService {
 
-  url = "http://localhost:8080/Classrooms";
   constructor(private http: HttpClient) { }
 
   getClassrooms(): Observable<Classroom[]> {
-    return this.http.get<Classroom[]>(this.url);
+    return this.http.get<Classroom[]>(environment.baseUrl);
   }
 
   getClassroom(id: number): Observable<Classroom> {
-    return this.http.get<Classroom>(`${this.url}/${id}`);
+    return this.http.get<Classroom>(`${environment.baseUrl}/${id}`);
   }
 
   save(classroom: Classroom): Observable<Classroom> {
-    return this.http.post<Classroom>(this.url, classroom);
+    return this.http.post<Classroom>(environment.baseUrl, classroom);
   }
 
   update(classroom: Classroom): Observable<Classroom> {
-    return this.http.put<Classroom>(`${this.url}/${classroom.id}`, classroom);
+    return this.http.put<Classroom>(`${environment.baseUrl}/${classroom.id}`, classroom);
   }
 
   delete(classroom: Classroom): Observable<void> {
-    return this.http.delete<void>(`${this.url}/${classroom.id}`);
+    return this.http.delete<void>(`${environment.baseUrl}/${classroom.id}`);
   }
 
 }

@@ -20,10 +20,7 @@ export class CoordinatorRegisterTimePage implements OnInit {
 
     this.formGroupTime = formBuilder.group({
       id: [],
-      semester: ['', [Validators.required, Validators.pattern(/\S/)]],
-      period: ['', [Validators.required, Validators.pattern]],
-      course: ['', [Validators.required, Validators.pattern(/\S/)]],
-      student: ['', [Validators.required, Validators.pattern(/\S/)]],
+      time: ['', [Validators.required, Validators.pattern(/\S/)]],
       condition: [false]
     });
   }
@@ -49,7 +46,7 @@ export class CoordinatorRegisterTimePage implements OnInit {
       if (this.formGroupTime.valid) {
         this.timeService.update(this.formGroupTime.value).subscribe({
           next: () => {
-            this.router.navigate(['coordenador/exibir-disciplina']);
+            this.router.navigate(['coordenador/exibir-horario']);
           }
         })
       }

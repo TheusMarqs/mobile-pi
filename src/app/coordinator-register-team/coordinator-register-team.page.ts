@@ -23,7 +23,7 @@ export class CoordinatorRegisterTeamPage implements OnInit {
       semester: ['', [Validators.required, Validators.pattern(/\S/)]],
       period: ['', [Validators.required, Validators.pattern]],
       course: ['', [Validators.required, Validators.pattern(/\S/)]],
-      student: ['', [Validators.required, Validators.pattern(/\S/)]],
+      students: ['', [Validators.required, Validators.pattern(/\S/)]],
       condition: [false]
     });
   }
@@ -78,8 +78,8 @@ export class CoordinatorRegisterTeamPage implements OnInit {
   get course(): any {
     return this.formGroupTeam.get("course");
   }
-  get student(): any {
-    return this.formGroupTeam.get("student");
+  get students(): any {
+    return this.formGroupTeam.get("students");
   }
 
 }

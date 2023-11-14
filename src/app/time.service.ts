@@ -8,7 +8,7 @@ import { Time } from './Time';
 })
 export class TimeService {
 
-  url = "http://localhost:8080/Times";
+  url = "http://localhost:8080/times";
   constructor(private http: HttpClient) { }
 
   getTimes(): Observable<Time[]> {

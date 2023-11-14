@@ -27,7 +27,7 @@
           <div class="mb-3">
             <div class="display-6 text-center">
               <br>
-              <h1 style="color: brown; font-weight: bold;">Cadastro de Horário</h1>
+              <h1 style="color: brown; font-weight: bold;">Cadastro de Turma</h1>
             </div>
           </div>
           <br>
@@ -59,8 +59,8 @@
           </div>
           <br>
           <div class="mb-3">
-            <ion-input type="number" formControlName="student" class="form-control" label="Quantidade de Alunos:" label-placement="floating" fill="outline" id="student" placeholder="Quantidade de Alunos"></ion-input>
-            <div *ngIf="submitted && student.invalid">
+            <ion-input type="number" formControlName="students" class="form-control" label="Quantidade de Alunos:" label-placement="floating" fill="outline" id="students" placeholder="Quantidade de Alunos"></ion-input>
+            <div *ngIf="submitted && students.invalid">
               <small class="text-danger">Quantidade de Alunos inválida!</small>
             </div>
           </div>

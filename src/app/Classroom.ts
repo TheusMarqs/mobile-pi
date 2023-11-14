@@ -1,6 +1,6 @@
 export interface Classroom{
   id: number;
-  name: string;
+  number: number;
   capacity: number;
   type: string;
 }
