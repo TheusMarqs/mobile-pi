@@ -76,13 +76,22 @@ const routes: Routes = [
     loadChildren: () => import('./coordinator-register-course/coordinator-register-course.module').then( m => m.CoordinatorRegisterCoursePageModule)
   },
   {
-    path: 'coordenador-cadastro-turmas',
+    path: 'coordenador-cadastro-turma',
     loadChildren: () => import('./coordinator-register-team/coordinator-register-team.module').then( m => m.CoordinatorRegisterTeamPageModule)
   },
   {
-    path: 'coordenador-turmas',
+    path: 'coordenador-turma',
     loadChildren: () => import('./coordinator-team/coordinator-team.module').then( m => m.CoordinatorTeamPageModule)
+  },
+  {
+    path: 'coordenador-time',
+    loadChildren: () => import('./coordinator-time/coordinator-time.module').then( m => m.CoordinatorTimePageModule)
+  },
+  {
+    path: 'coordenador-cadastro-horarios',
+    loadChildren: () => import('./coordinator-register-time/coordinator-register-time.module').then( m => m.CoordinatorRegisterTimePageModule)
   }
+
 
 
 
