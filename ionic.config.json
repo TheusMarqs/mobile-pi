@@ -1,7 +1,9 @@
 {
   "name": "ionic-pi",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
-  "type": "angular"
+  "type": "angular",
+  "proxyConfig": "proxy.config.json"
 }

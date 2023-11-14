@@ -55,9 +55,9 @@
           </div>
           <br>
           <div class="mb-3 d-flex justify-content-end gap-2">
-            <ion-button style="--background: brown;" *ngIf="isEditing === false" class="btn btn-success" (click)="save()">Salvar</ion-button>
-            <ion-button style="--background: brown;" *ngIf="isEditing === true" class="btn btn-success" (click)="save()">Atualizar</ion-button>
-            <ion-button style="--background: brown;" class="btn btn-danger" (click)="cancel()">Cancelar</ion-button>
+            <ion-button style=" cursor: pointer; --background: brown;" *ngIf="isEditing === false" class="btn btn-success" (click)="save()">Salvar</ion-button>
+            <ion-button style=" cursor: pointer; --background: brown;" *ngIf="isEditing === true" class="btn btn-success" (click)="save()">Atualizar</ion-button>
+            <ion-button style=" cursor: pointer; --background: brown;" class="btn btn-danger" (click)="cancel()">Cancelar</ion-button>
           </div>
         </form>
       </div>
