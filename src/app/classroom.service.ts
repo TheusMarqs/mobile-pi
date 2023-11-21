@@ -8,7 +8,8 @@ import { Classroom } from './Classroom';
   providedIn: 'root'
 })
 export class ClassroomService {
-
+  
+  url = "http://localhost:8080/classroom";
   constructor(private http: HttpClient) { }
 
   getClassrooms(): Observable<Classroom[]> {

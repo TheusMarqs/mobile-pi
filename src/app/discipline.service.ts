@@ -8,7 +8,7 @@ import { Discipline } from './Discipline';
 })
 export class DisciplineService {
 
-  url = "http://localhost:8080/Disciplines";
+  url = "http://localhost:8080/disciplines";
   constructor(private http: HttpClient) { }
 
   getDisciplines(): Observable<Discipline[]> {

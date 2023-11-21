@@ -8,7 +8,7 @@ import { Course } from './Course';
 })
 export class CourseService {
 
-  url = "http://localhost:8080/Courses";
+  url = "http://localhost:8080/courses";
   constructor(private http: HttpClient) { }
 
   getCourses(): Observable<Course[]> {
