@@ -84,7 +84,7 @@ const routes: Routes = [
     loadChildren: () => import('./coordinator-team/coordinator-team.module').then( m => m.CoordinatorTeamPageModule)
   },
   {
-    path: 'coordenador-time',
+    path: 'coordenador-horario',
     loadChildren: () => import('./coordinator-time/coordinator-time.module').then( m => m.CoordinatorTimePageModule)
   },
   {

@@ -9,19 +9,18 @@ import { Classroom } from './Classroom';
 })
 export class ClassroomService {
   
-  url = "http://localhost:8080/classroom";
   constructor(private http: HttpClient) { }
 
-  getClassrooms(): Observable<Classroom[]> {
-    return this.http.get<Classroom[]>(environment.baseUrl);
+  getClassrooms():Observable<Classroom[]>{
+    return this.http.get<Classroom[]>(`${environment.baseUrl}/classrooms`);
   }
 
   getClassroom(id: number): Observable<Classroom> {
-    return this.http.get<Classroom>(`${environment.baseUrl}/${id}`);
+    return this.http.get<Classroom>(`${environment.baseUrl}/classrooms/${id}`);
   }
 
   save(classroom: Classroom): Observable<Classroom> {
-    return this.http.post<Classroom>(environment.baseUrl, classroom);
+    return this.http.post<Classroom>(`${environment.baseUrl}/classrooms`, classroom);
   }
 
   update(classroom: Classroom): Observable<Classroom> {

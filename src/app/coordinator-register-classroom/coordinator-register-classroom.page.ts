@@ -23,7 +23,6 @@ export class CoordinatorRegisterClassroomPage implements OnInit {
       number: ['', [Validators.required, Validators.pattern(/\S/)]],
       capacity: ['', [Validators.required, Validators.pattern]],
       type: ['', [Validators.required, Validators.pattern(/\S/)]],
-      condition: [false]
     });
   }
 
@@ -48,7 +47,7 @@ export class CoordinatorRegisterClassroomPage implements OnInit {
       if (this.formGroupClassroom.valid) {
         this.classroomService.update(this.formGroupClassroom.value).subscribe({
           next: () => {
-            this.router.navigate(['coordenador/exibir-sala']);
+            this.router.navigate(['coordenador-sala']);
           }
         })
       }
@@ -57,7 +56,7 @@ export class CoordinatorRegisterClassroomPage implements OnInit {
     else {
       this.classroomService.save(this.formGroupClassroom.value).subscribe({
         next: () => {
-          this.router.navigate(['coordenador/exibir-sala']);
+          this.router.navigate(['coordenador-sala']);
         }
       })
     }
@@ -65,7 +64,7 @@ export class CoordinatorRegisterClassroomPage implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['coordenador/exibir-sala']);
+    this.router.navigate(['coordenador-sala']);
   }
 
   get number(): any {

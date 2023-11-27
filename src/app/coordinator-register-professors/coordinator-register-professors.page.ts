@@ -49,7 +49,7 @@ export class CoordinatorRegisterProfessorsPage implements OnInit {
       if (this.formGroupProfessor.valid) {
         this.professorService.update(this.formGroupProfessor.value).subscribe({
           next: () => {
-            this.router.navigate(['coordenador/exibir-professor']);
+            this.router.navigate(['coordenador-professores']);
           }
         })
       }
@@ -58,7 +58,7 @@ export class CoordinatorRegisterProfessorsPage implements OnInit {
     else {
       this.professorService.save(this.formGroupProfessor.value).subscribe({
         next: () => {
-          this.router.navigate(['coordenador/exibir-professor']);
+          this.router.navigate(['coordenador-professores']);
         }
       })
     }
@@ -66,7 +66,7 @@ export class CoordinatorRegisterProfessorsPage implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['coordenador/exibir-professor']);
+    this.router.navigate(['coordenador-professores']);
   }
 
   get name(): any {

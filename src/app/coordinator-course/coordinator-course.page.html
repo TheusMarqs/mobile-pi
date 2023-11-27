@@ -1,69 +1,69 @@
 <ion-menu contentId="main-content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title style="color: brown; font-weight: bold;">Fatec</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <ion-header>
+        <ion-toolbar>
+            <ion-title style="color: brown; font-weight: bold;">Fatec</ion-title>
+        </ion-toolbar>
+    </ion-header>
 
-  <ion-content>
-    <ion-list>
-      <ion-item routerLink="/home-coordenador">Home</ion-item>
-      <ion-item routerLink="/coordenador-disciplina">Disciplina</ion-item>
-      <ion-item routerLink="/coordenador-professores">Professores</ion-item>
-      <ion-item routerLink="/coordenador-turma">Turmas</ion-item>
-      <ion-item routerLink="/coordenador-curso">Cursos</ion-item>
-      <ion-item routerLink="/coordenador-sala">Salas</ion-item>
-      <ion-item routerLink="/coordenador-time">Horário</ion-item>
-      <ion-item routerLink="/home" style="color: brown;">Sair</ion-item>
-    </ion-list>
-  </ion-content>
+    <ion-content>
+        <ion-list>
+            <ion-item routerLink="/home-coordenador">Home</ion-item>
+            <ion-item routerLink="/coordenador-disciplina">Disciplina</ion-item>
+            <ion-item routerLink="/coordenador-professores">Professores</ion-item>
+            <ion-item routerLink="/coordenador-turma">Turmas</ion-item>
+            <ion-item routerLink="/coordenador-curso">Cursos</ion-item>
+            <ion-item routerLink="/coordenador-sala">Salas</ion-item>
+            <ion-item routerLink="/coordenador-time">Horário</ion-item>
+            <ion-item routerLink="/home" style="color: brown;">Sair</ion-item>
+        </ion-list>
+    </ion-content>
 </ion-menu>
 
 <ion-router-outlet id="main-content"></ion-router-outlet>
 
 
 <ion-header>
-  <ion-toolbar>
-    <ion-title style="color: brown; font-weight: bold;">Fatec</ion-title>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title style="color: brown; font-weight: bold;">Fatec</ion-title>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 
 <ion-content [fullscreen]="true">
 
-  <br>
-  <h1 class="ion-text-center" style="color: rgb(0, 0, 0); font-weight: bold; font-size: 50px;">Cursos</h1>
-  <br>
+    <br>
+    <h1 class="ion-text-center" style="color: rgb(0, 0, 0); font-weight: bold; font-size: 50px;">Cursos</h1>
+    <br>
 
-<ion-grid>
-  <ion-row class="ion-justify-content-center">
-    <ion-searchbar style="width: 500px; margin-right: 760px;" animated="true" placeholder="Animated"></ion-searchbar>
-  </ion-row>
+    <ion-grid>
+        <ion-row class="ion-justify-content-center">
+            <ion-searchbar style="width: 500px; margin-right: 760px;" animated="true" placeholder="Animated"></ion-searchbar>
+        </ion-row>
 
-  <ion-row class="ion-justify-content-center">
-    <ion-col size="6" >
-      <ion-list>
-        <ion-card>
-          <ion-card-header>
-            <ion-card-title>#</ion-card-title>
-            <ion-card-subtitle>#</ion-card-subtitle>
-          </ion-card-header>
+        <ion-row class="ion-justify-content-center">
+            <ion-col size="6">
+                <ion-list>
+                    <ion-card *ngFor="let course of courses">
+                        <ion-card-header>
+                            <ion-card-title>{{course.name | titlecase}}</ion-card-title>
+                        </ion-card-header>
 
-          <ion-card-content>
-            ####
-          </ion-card-content>
-        </ion-card>
-      </ion-list>
-    </ion-col>
-  </ion-row>
-  <ion-row class="ion-justify-content-center">
-    <ion-button routerLink="/coordenador-cadastro-curso" size="large" style="--background: brown; --border-radius: 6px; font-weight: bold; margin: auto; cursor: pointer;">
-      Cadastrar
-    </ion-button>
-  </ion-row>
-</ion-grid>
+                        <ion-card-content>
+                            <p>Carga horária total: {{course.workload}} horas</p>
+                            <p>Duração: {{course.duration}} semestres</p>
+                        </ion-card-content>
+                    </ion-card>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+            <ion-button routerLink="/coordenador-cadastro-curso" size="large" style="--background: brown; --border-radius: 6px; font-weight: bold; margin: auto; cursor: pointer;">
+                Cadastrar
+            </ion-button>
+        </ion-row>
+    </ion-grid>
 
 </ion-content>

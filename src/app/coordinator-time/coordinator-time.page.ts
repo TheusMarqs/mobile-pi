@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TimeService } from '../time.service';
+import { Time } from '../Time';
 
 @Component({
   selector: 'app-coordinator-time',
@@ -6,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./coordinator-time.page.scss'],
 })
 export class CoordinatorTimePage implements OnInit {
+  times: Time[] = [];
 
-  constructor() { }
+  constructor(private timeService: TimeService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.loadTimes();
   }
 
+  loadTimes() {
+    this.timeService.getTimes().subscribe({
+      next: data => this.times = data
+    });
+  }
 }

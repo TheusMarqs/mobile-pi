@@ -14,7 +14,7 @@ export class CoordinatorRegisterCoursePage implements OnInit {
   submitted: boolean = false;
   isEditing: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private CourseService: CourseService,
+  constructor(private formBuilder: FormBuilder, private courseService: CourseService,
     private route: ActivatedRoute,
     private router: Router) {
 
@@ -23,17 +23,18 @@ export class CoordinatorRegisterCoursePage implements OnInit {
       name: ['', [Validators.required, Validators.pattern(/\S/)]],
       workload: ['', [Validators.required, Validators.pattern]],
       duration: ['', [Validators.required, Validators.pattern(/\S/)]],
-      condition: [false]
     });
   }
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get("id"));
-    this.getCourseById(id);
+    if (id) {
+      this.getCourseById(id);
+    }
   }
 
   getCourseById(id: number) {
-    this.CourseService.getCourse(id).subscribe({
+    this.courseService.getCourse(id).subscribe({
       next: data => {
         this.formGroupCourse.setValue(data);
         this.isEditing = true;
@@ -46,18 +47,18 @@ export class CoordinatorRegisterCoursePage implements OnInit {
     this.submitted = true;
     if (this.isEditing) {
       if (this.formGroupCourse.valid) {
-        this.CourseService.update(this.formGroupCourse.value).subscribe({
+        this.courseService.update(this.formGroupCourse.value).subscribe({
           next: () => {
-            this.router.navigate(['coordenador/exibir-curso']);
+            this.router.navigate(['coordenador-curso']);
           }
         })
       }
     }
 
     else {
-      this.CourseService.save(this.formGroupCourse.value).subscribe({
+      this.courseService.save(this.formGroupCourse.value).subscribe({
         next: () => {
-          this.router.navigate(['coordenador/exibir-curso']);
+          this.router.navigate(['coordenador-curso']);
         }
       })
     }
@@ -65,7 +66,7 @@ export class CoordinatorRegisterCoursePage implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['coordenador/exibir-curso']);
+    this.router.navigate(['coordenador-curso']);
   }
 
   get name(): any {

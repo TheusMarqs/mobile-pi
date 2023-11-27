@@ -21,7 +21,6 @@ export class CoordinatorRegisterTimePage implements OnInit {
     this.formGroupTime = formBuilder.group({
       id: [],
       time: ['', [Validators.required, Validators.pattern(/\S/)]],
-      condition: [false]
     });
   }
 
@@ -46,7 +45,7 @@ export class CoordinatorRegisterTimePage implements OnInit {
       if (this.formGroupTime.valid) {
         this.timeService.update(this.formGroupTime.value).subscribe({
           next: () => {
-            this.router.navigate(['coordenador/exibir-horario']);
+            this.router.navigate(['coordenador-horario']);
           }
         })
       }
@@ -55,7 +54,7 @@ export class CoordinatorRegisterTimePage implements OnInit {
     else {
       this.timeService.save(this.formGroupTime.value).subscribe({
         next: () => {
-          this.router.navigate(['coordenador/exibir-horario']);
+          this.router.navigate(['coordenador-horario']);
         }
       })
     }
@@ -63,7 +62,7 @@ export class CoordinatorRegisterTimePage implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['coordenador/exibir-horario']);
+    this.router.navigate(['coordenador-horario']);
   }
 
   get time(): any {

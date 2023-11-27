@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProfessorService } from '../professor.service';
+import { Professor } from '../Professor';
 
 @Component({
   selector: 'app-coordinator-professors',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./coordinator-professors.page.scss'],
 })
 export class CoordinatorProfessorsPage implements OnInit {
+  professors: Professor[] = [];
 
-  constructor() { }
+  constructor(private professorService: ProfessorService) { }
 
-  ngOnInit() {
+  ngOnInit() : void{
+    this.loadProfessors();
+  }
+
+  loadProfessors(){
+    this.professorService.getProfessors().subscribe({
+      next: data => this.professors = data
+    });
   }
 
 }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DisciplineService } from '../discipline.service';
+import { CourseService } from '../course.service';
+import { Course } from '../Course';
 
 @Component({
   selector: 'app-coordinator-register-discipline',
@@ -13,23 +15,33 @@ export class CoordinatorRegisterDisciplinePage implements OnInit {
   formGroupDiscipline : FormGroup;
   submitted: boolean = false;
   isEditing: boolean = false;
+  courses: Course[] = [];
 
   constructor(private formBuilder: FormBuilder, private disciplineService: DisciplineService,
     private route: ActivatedRoute,
-    private router: Router) {
+    private router: Router,
+    private courseService: CourseService) {
 
     this.formGroupDiscipline = formBuilder.group({
       id: [],
       name: ['', [Validators.required, Validators.pattern(/\S/)]],
       workload: ['', [Validators.required, Validators.pattern]],
       course: ['', [Validators.required, Validators.pattern(/\S/)]],
-      condition: [false]
     });
   }
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get("id"));
-    this.getDisciplineById(id);
+    if (id) {
+      this.getDisciplineById(id);
+    }
+    this.loadCourses();
+  }
+
+  loadCourses() {
+    this.courseService.getCourses().subscribe({
+      next: data => this.courses = data
+    });
   }
 
   getDisciplineById(id: number) {
@@ -48,7 +60,7 @@ export class CoordinatorRegisterDisciplinePage implements OnInit {
       if (this.formGroupDiscipline.valid) {
         this.disciplineService.update(this.formGroupDiscipline.value).subscribe({
           next: () => {
-            this.router.navigate(['coordenador/exibir-disciplina']);
+            this.router.navigate(['coordenador-disciplina']);
           }
         })
       }
@@ -57,7 +69,7 @@ export class CoordinatorRegisterDisciplinePage implements OnInit {
     else {
       this.disciplineService.save(this.formGroupDiscipline.value).subscribe({
         next: () => {
-          this.router.navigate(['coordenador/exibir-disciplina']);
+          this.router.navigate(['coordenador-disciplina']);
         }
       })
     }
@@ -65,7 +77,7 @@ export class CoordinatorRegisterDisciplinePage implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['coordenador/exibir-disciplina']);
+    this.router.navigate(['coordenador-disciplina']);
   }
 
   get name(): any {

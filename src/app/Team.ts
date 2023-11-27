@@ -4,4 +4,5 @@ export interface Team{
   period: string;
   course: number;
   students: number;
+  time: number;
 }
