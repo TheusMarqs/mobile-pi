@@ -24,7 +24,7 @@ export class CoordinatorProfessorsPage implements OnInit {
   }
 
   edit(professors: Professor) {
-    this.router.navigate(['coordenador-atualizar-professor', professors.id]);
+    this.router.navigate(['coordenador-atualizar-professores', professors.id]);
   }
 
   delete(professors: Professor) {

@@ -24,7 +24,7 @@ export class CoordinatorTimePage implements OnInit {
   }
 
   edit(times: Time) {
-    this.router.navigate(['coordenador-atualizar-horario', times.id]);
+    this.router.navigate(['coordenador-atualizar-horarios', times.id]);
   }
 
   delete(times: Time) {
