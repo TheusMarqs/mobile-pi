@@ -3,6 +3,7 @@ import { CourseService } from '../course.service';
 import { DisciplineService } from '../discipline.service';
 import { Course } from '../Course';
 import { Discipline } from '../Discipline';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-coordinator-discipline',
@@ -13,7 +14,7 @@ export class CoordinatorDisciplinePage implements OnInit {
   courses: Course[] = [];
   disciplines: Discipline[] = [];
 
-  constructor(private courseService: CourseService, private disciplineService: DisciplineService) { }
+  constructor(private courseService: CourseService, private router: Router, private disciplineService: DisciplineService) { }
 
   ngOnInit(): void {
     this.loadCourses();
@@ -39,6 +40,16 @@ export class CoordinatorDisciplinePage implements OnInit {
       return course ? course.name  : 'Curso não encontrado';
     }
     return 'Disciplina não encontrada';
+  }
+
+  edit(disciplines: Discipline) {
+    this.router.navigate(['coordenador-atualizar-disciplina', disciplines.id]);
+  }
+
+  delete(disciplines: Discipline) {
+    this.disciplineService.delete(disciplines).subscribe({
+      next: () => this.loadDisciplines()
+    });
   }
 
 }

@@ -13,7 +13,7 @@
             <ion-item routerLink="/coordenador-turma">Turmas</ion-item>
             <ion-item routerLink="/coordenador-curso">Cursos</ion-item>
             <ion-item routerLink="/coordenador-sala">Salas</ion-item>
-            <ion-item routerLink="/coordenador-time">Horário</ion-item>
+            <ion-item routerLink="/coordenador-horarios">Horário</ion-item>
             <ion-item routerLink="/home" style="color: brown;">Sair</ion-item>
         </ion-list>
     </ion-content>
@@ -59,7 +59,8 @@
                             <p>Horários: {{getTimeString(team.id)}}</p>
                         </ion-card-content>
 
-                        <!--Editar e excluir aqui-->
+                        <ion-icon class="optionIcons me-1" name="create-outline" (click)="edit(team)"></ion-icon>
+                        <ion-icon class="optionIcons" name="trash-outline" (click)="delete(team)"></ion-icon>
                     </ion-card>
                 </ion-list>
             </ion-col>

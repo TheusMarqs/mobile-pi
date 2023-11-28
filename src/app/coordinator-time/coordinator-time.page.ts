@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TimeService } from '../time.service';
 import { Time } from '../Time';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-coordinator-time',
@@ -10,7 +11,7 @@ import { Time } from '../Time';
 export class CoordinatorTimePage implements OnInit {
   times: Time[] = [];
 
-  constructor(private timeService: TimeService) { }
+  constructor(private router: Router, private timeService: TimeService) { }
 
   ngOnInit(): void {
     this.loadTimes();
@@ -21,4 +22,15 @@ export class CoordinatorTimePage implements OnInit {
       next: data => this.times = data
     });
   }
+
+  edit(times: Time) {
+    this.router.navigate(['coordenador-atualizar-horario', times.id]);
+  }
+
+  delete(times: Time) {
+    this.timeService.delete(times).subscribe({
+      next: () => this.loadTimes()
+    });
+  }
+  
 }

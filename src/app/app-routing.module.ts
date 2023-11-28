@@ -84,21 +84,37 @@ const routes: Routes = [
     loadChildren: () => import('./coordinator-team/coordinator-team.module').then( m => m.CoordinatorTeamPageModule)
   },
   {
-    path: 'coordenador-horario',
+    path: 'coordenador-horarios',
     loadChildren: () => import('./coordinator-time/coordinator-time.module').then( m => m.CoordinatorTimePageModule)
   },
   {
     path: 'coordenador-cadastro-horarios',
     loadChildren: () => import('./coordinator-register-time/coordinator-register-time.module').then( m => m.CoordinatorRegisterTimePageModule)
+  },
+  {
+    path: 'coordenador-atualizar-turma/:id',
+    loadChildren: () => import('./coordinator-register-team/coordinator-register-team.module').then( m => m.CoordinatorRegisterTeamPageModule)
+  },
+  {
+    path: 'coordenador-atualizar-curso/:id',
+    loadChildren: () => import('./coordinator-register-course/coordinator-register-course.module').then( m => m.CoordinatorRegisterCoursePageModule)
+  },
+  {
+    path: 'coordenador-atualizar-horarios/:id',
+    loadChildren: () => import('./coordinator-register-time/coordinator-register-time.module').then( m => m.CoordinatorRegisterTimePageModule)
+  },
+  {
+    path: 'coordenador-atualizar-disciplina/:id',
+    loadChildren: () => import('./coordinator-register-discipline/coordinator-register-discipline.module').then( m => m.CoordinatorRegisterDisciplinePageModule)
+  },
+  {
+    path: 'coordenador-atualizar-sala/:id',
+    loadChildren: () => import('./coordinator-register-classroom/coordinator-register-classroom.module').then( m => m.CoordinatorRegisterClassroomPageModule)
+  },
+  {
+    path: 'coordenador-atualizar-professores/:id',
+    loadChildren: () => import('./coordinator-register-professors/coordinator-register-professors.module').then( m => m.CoordinatorRegisterProfessorsPageModule)
   }
-
-
-
-
-
-
-
-
 
 
 ];

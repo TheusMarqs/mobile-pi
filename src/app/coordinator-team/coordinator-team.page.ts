@@ -5,6 +5,7 @@ import { Course } from '../Course';
 import { CourseService } from '../course.service';
 import { Time } from '../Time';
 import { TimeService } from '../time.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-coordinator-team',
@@ -16,7 +17,7 @@ export class CoordinatorTeamPage implements OnInit {
   courses: Course[] = [];
   times: Time[] = [];
 
-  constructor(private teamService: TeamService, private courseService: CourseService, private timeService: TimeService) { }
+  constructor(private teamService: TeamService, private router: Router, private courseService: CourseService, private timeService: TimeService) { }
 
   ngOnInit(): void {
     this.loadTeams();
@@ -66,6 +67,16 @@ export class CoordinatorTeamPage implements OnInit {
     }
 
     return 'Turma não encontrada';
+  }
+
+  edit(teams: Team) {
+    this.router.navigate(['coordenador-atualizar-turma', teams.id]);
+  }
+
+  delete(teams: Team) {
+    this.teamService.delete(teams).subscribe({
+      next: () => this.loadTeams()
+    });
   }
 
 }
