@@ -114,7 +114,12 @@ const routes: Routes = [
   {
     path: 'coordenador-atualizar-professores/:id',
     loadChildren: () => import('./coordinator-register-professors/coordinator-register-professors.module').then( m => m.CoordinatorRegisterProfessorsPageModule)
+  },
+  {
+    path: 'coordenador-cadastro-agenda',
+    loadChildren: () => import('./coordinator-register-schedule/coordinator-register-schedule.module').then( m => m.CoordinatorRegisterSchedulePageModule)
   }
+
 
 
 ];

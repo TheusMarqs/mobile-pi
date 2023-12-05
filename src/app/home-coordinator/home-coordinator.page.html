@@ -33,28 +33,37 @@
 
 <ion-content [fullscreen]="true">
 
-  <h1 class="ion-text-center" style="color: rgb(0, 0, 0); font-weight: bold; font-size: 50px;">Agendamento de Aulas</h1>
   <br>
-  <br>
-
+  <h1 class="ion-text-center" style="color: rgb(0, 0, 0); font-weight: bold; font-size: 50px;">Agenda</h1>
 
   <ion-grid>
-    <ion-row class="ion-justify-content-center">
-      <ion-col size="6" >
-        <ion-list>
-          <ion-item>
-            <ion-select label="Selecione a turma...">
-              <ion-select-option value="#">#</ion-select-option>
-            </ion-select>
-          </ion-item>
-        </ion-list>
-      </ion-col>
-    </ion-row>
-    <ion-row class="ion-justify-content-center">
-      <br>
-      <br>
-      <ion-button size="large" style="--background:brown; cursor: pointer; --border-radius: 6px; font-weight: bold; margin: auto;">Continuar</ion-button>
-    </ion-row>
+
+      <ion-row class="ion-justify-content-center">
+          <ion-col size="6">
+              <ion-list>
+                  <ion-card *ngFor="let schedule of schedules">
+                    <ion-card-header>
+                      <ion-card-title>Dia:{{schedule.weekday | titlecase }}</ion-card-title>
+                      <ion-card-subtitle>Horário:{{ getTimeString(schedule.id) }}</ion-card-subtitle>
+                  </ion-card-header>
+
+                  <ion-card-content>
+                      <p>Sala: {{schedule.classroom}}</p>
+                      <p>Professor:{{ getProfessorName(schedule.id) | titlecase }}</p>
+                      <p>Disciplina:{{ getDisciplineName(schedule.id) | titlecase }}</p>
+                  </ion-card-content>
+
+                      <ion-icon class="optionIcons me-1" name="create-outline" (click)="edit(schedule)"></ion-icon>
+                      <ion-icon class="optionIcons" name="trash-outline" (click)="delete(schedule)"></ion-icon>
+                  </ion-card>
+              </ion-list>
+          </ion-col>
+      </ion-row>
+      <ion-row class="ion-justify-content-center">
+          <ion-button routerLink="/coordenador-cadastro-agenda" size="large" style="--background: brown; cursor: pointer; --border-radius: 6px; font-weight: bold; margin: auto;">
+              Cadastrar
+          </ion-button>
+      </ion-row>
   </ion-grid>
 
 </ion-content>
