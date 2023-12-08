@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ScheduleService } from '../schedule.service';
-import { Schedule } from '../Schedule';
+import { forkJoin } from 'rxjs';
+import { Course } from '../Course';
+import { CourseService } from '../course.service';
+import { Team } from '../Team';
+import { TeamService } from '../team.service';
+
 
 @Component({
   selector: 'app-home-coordinator',
@@ -9,36 +13,43 @@ import { Schedule } from '../Schedule';
   styleUrls: ['./home-coordinator.page.scss'],
 })
 export class HomeCoordinatorPage implements OnInit {
-getDisciplineName(arg0: number): string {
-throw new Error('Method not implemented.');
-}
-getProfessorName(arg0: number): string {
-throw new Error('Method not implemented.');
-}
-getTimeString(arg0: number) {
-throw new Error('Method not implemented.');
-}
-  schedules: Schedule[] = [];
+  teams: Team[] = [];
+  teamCourseMap: { [key: number]: string } = {};
+  selectedTeamId: number | null = null;
 
-  constructor(private router: Router, private scheduleService: ScheduleService) { }
-
+  constructor(private teamService: TeamService, private courseService: CourseService, private router: Router){
+  }
   ngOnInit(): void {
-    this.loadSchedules();
+    forkJoin([this.teamService.getTeams(), this.courseService.getCourses()]).subscribe(
+      ([teams, courses]) => {
+        this.teams = teams;
+        this.createTeamCourseMap(courses);
+      }
+    );
+  }
+  onTeamChange(event: any) {
+    this.selectedTeamId = event.detail.value;
   }
 
-  loadSchedules() {
-    this.scheduleService.getSchedules().subscribe({
-      next: data => this.schedules = data
+  navigateToSelectedTeam(): void {
+    if (this.selectedTeamId !== null && this.selectedTeamId.toString() !== '0') {
+      this.router.navigate(['/coordenador-agenda', this.selectedTeamId]);
+    }
+  }
+
+  createTeamCourseMap(courses: Course[]): void {
+    for (const team of this.teams) {
+      const course = courses.find((c) => c.id === team.course);
+      if (course) {
+        this.teamCourseMap[team.id] = course.name;
+      }
+    }
+  }
+
+  getAllTeams(){
+    this.teamService.getTeams().subscribe((teams) => {
+      this.teams = teams;
     });
   }
 
-  edit(schedules: Schedule) {
-    this.router.navigate(['coordenador-atualizar-horarios', schedules.id]);
-  }
-
-  delete(schedules: Schedule) {
-    this.scheduleService.delete(schedules).subscribe({
-      next: () => this.loadSchedules()
-    });
-  }
 }

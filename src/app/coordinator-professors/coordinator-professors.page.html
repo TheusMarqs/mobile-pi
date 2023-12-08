@@ -59,8 +59,8 @@
                         <ion-card-content>
                             <p>Email: {{professor.email}}</p>
                             <p>Senha: {{professor.password}}</p>
-                            <p *ngIf="professor.condition == false">Condição: Inativo</p>
-                            <p *ngIf="professor.condition == true">Condição: Ativo</p>
+                            <p *ngIf="professor.status == false">Condição: Inativo</p>
+                            <p *ngIf="professor.status == true">Condição: Ativo</p>
                         </ion-card-content>
 
                         <ion-icon class="optionIcons me-1" name="create-outline" (click)="edit(professor)"></ion-icon>

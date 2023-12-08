@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Course } from './Course';
 
 @Injectable({
@@ -17,6 +17,12 @@ export class CourseService {
 
   getCourse(id: number): Observable<Course> {
     return this.http.get<Course>(`${this.url}/${id}`);
+  }
+
+  getCourseName(id: number): Observable<string> {
+    return this.http.get<any>(`${this.url}/${id}`).pipe(
+      map((response: any) => response.name)
+    );
   }
 
   save(course: Course): Observable<Course> {

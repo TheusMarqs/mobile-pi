@@ -1,0 +1,106 @@
+<ion-menu contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title style="color: brown; font-weight: bold;">Fatec</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <ion-item routerLink="/home-coordenador">Home</ion-item>
+      <ion-item routerLink="/coordenador-disciplina">Disciplina</ion-item>
+      <ion-item routerLink="/coordenador-professores">Professores</ion-item>
+      <ion-item routerLink="/coordenador-turma">Turmas</ion-item>
+      <ion-item routerLink="/coordenador-curso">Cursos</ion-item>
+      <ion-item routerLink="/coordenador-sala">Salas</ion-item>
+      <ion-item routerLink="/coordenador-horarios">Horário</ion-item>
+      <ion-item routerLink="/home" style="color: brown;">Sair</ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-router-outlet id="main-content"></ion-router-outlet>
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="color: brown; font-weight: bold;">Fatec</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content [fullscreen]="true">
+  <ion-content class="ion-padding">
+    <div *ngIf="teamById" class="ion-text-center ion-text-uppercase ion-margin-top">
+      {{ courseById | titlecase }} - {{ teamById.period | titlecase }} - {{ teamById.semester }}º semestre
+    </div>
+    <ion-button expand="full" color="primary" class="ion-margin-top" [routerLink]="['/coordenador']">
+      Voltar
+    </ion-button>
+
+    <ion-row class="ion-justify-content-center ion-padding-top">
+      <ion-col size-md="3" class="ion-text-center ion-margin-top">
+        <ion-input [(ngModel)]="filter" placeholder="Pesquisar..."></ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-table *ngIf="schedules.length !== 0; else empty" class="ion-margin-top">
+      <ion-row>
+        <ion-col>#</ion-col>
+        <ion-col>Dia</ion-col>
+        <ion-col>Horário</ion-col>
+        <ion-col>Sala</ion-col>
+        <ion-col>Professor</ion-col>
+        <ion-col>Disciplina</ion-col>
+        <ion-col>Opções</ion-col>
+      </ion-row>
+      <ion-row *ngFor="let schedule of filteredSchedules | filter: filter">
+        <ion-col>{{ schedule.id }}</ion-col>
+        <ion-col>{{ schedule.weekday | titlecase }}</ion-col>
+        <ion-col>{{ getTimeString(schedule.id) }}</ion-col>
+        <ion-col>Sala {{ getClassroomNumber(schedule.id) }}</ion-col>
+        <ion-col>{{ getProfessorName(schedule.id) | titlecase }}</ion-col>
+        <ion-col>{{ getDisciplineName(schedule.id) | titlecase }}</ion-col>
+        <ion-col>
+          <ion-icon class="optionIcons" name="create-outline" (click)="edit(schedule)"></ion-icon>
+          <ion-icon class="optionIcons" name="trash-outline" (click)="delete(schedule)"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-table>
+
+    <ng-container *ngIf="schedules.length === 0; else empty">
+      <p class="ion-text-center ion-text-uppercase ion-margin-top">Nenhum agendamento cadastrado para essa turma.</p>
+    </ng-container>
+
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Inline Modal</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-button expand="block" (click)="setOpen(true)">Open</ion-button>
+    <ion-modal [isOpen]="isModalOpen">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>Modal</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="setOpen(false)">Close</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni illum quidem recusandae ducimus quos
+            reprehenderit. Veniam, molestias quos, dolorum consequuntur nisi deserunt omnis id illo sit cum qui.
+            Eaque,
+            dicta.
+          </p>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+  </ion-content>
+
+</ion-content>

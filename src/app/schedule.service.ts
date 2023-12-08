@@ -7,7 +7,6 @@ import { Schedule } from './Schedule';
   providedIn: 'root'
 })
 export class ScheduleService {
-
   url = "http://localhost:8080/Schedules";
   constructor(private http: HttpClient) { }
 
@@ -23,12 +22,17 @@ export class ScheduleService {
     return this.http.post<Schedule>(this.url, Schedule);
   }
 
-  update(Schedule: Schedule): Observable<Schedule> {
-    return this.http.put<Schedule>(`${this.url}/${Schedule.id}`, Schedule);
+  update(schedules: Schedule[], weekDayId: number): Observable<Schedule[]> {
+    return this.http.put<Schedule[]>(`${this.url}/${weekDayId}`, schedules);
   }
 
   delete(Schedule: Schedule): Observable<void> {
     return this.http.delete<void>(`${this.url}/${Schedule.id}`);
+  }
+
+  getSchedulesByDayOfWeek(teamId: number, dayOfWeek: number ): Observable<Schedule[]> {
+    const url = `${this.url}/${teamId}/${dayOfWeek}`;
+    return this.http.get<Schedule[]>(url);
   }
 
 }

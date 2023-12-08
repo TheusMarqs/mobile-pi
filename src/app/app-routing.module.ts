@@ -118,7 +118,14 @@ const routes: Routes = [
   {
     path: 'coordenador-cadastro-agenda',
     loadChildren: () => import('./coordinator-register-schedule/coordinator-register-schedule.module').then( m => m.CoordinatorRegisterSchedulePageModule)
+  },
+  {
+    path: 'coordenador-agenda/:id',
+    loadChildren: () => import('./coordinator-schedule/coordinator-schedule.module').then( m => m.CoordinatorSchedulePageModule)
   }
+
+
+
 
 
 

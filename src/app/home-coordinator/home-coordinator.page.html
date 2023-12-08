@@ -33,37 +33,29 @@
 
 <ion-content [fullscreen]="true">
 
-  <br>
-  <h1 class="ion-text-center" style="color: rgb(0, 0, 0); font-weight: bold; font-size: 50px;">Agenda</h1>
-
   <ion-grid>
 
-      <ion-row class="ion-justify-content-center">
-          <ion-col size="6">
-              <ion-list>
-                  <ion-card *ngFor="let schedule of schedules">
-                    <ion-card-header>
-                      <ion-card-title>Dia:{{schedule.weekday | titlecase }}</ion-card-title>
-                      <ion-card-subtitle>Horário:{{ getTimeString(schedule.id) }}</ion-card-subtitle>
-                  </ion-card-header>
+    <br>
+    <h1 class="ion-text-center" style="color: rgb(0, 0, 0); font-weight: bold; font-size: 50px;">Agenda</h1>
+    <br>
 
-                  <ion-card-content>
-                      <p>Sala: {{schedule.classroom}}</p>
-                      <p>Professor:{{ getProfessorName(schedule.id) | titlecase }}</p>
-                      <p>Disciplina:{{ getDisciplineName(schedule.id) | titlecase }}</p>
-                  </ion-card-content>
+    <ion-row class="ion-justify-content-center">
+      <ion-searchbar style="width: 500px; margin-right: 760px; margin-bottom: 30px;" animated="true" placeholder="Animated"></ion-searchbar>
+    </ion-row>
 
-                      <ion-icon class="optionIcons me-1" name="create-outline" (click)="edit(schedule)"></ion-icon>
-                      <ion-icon class="optionIcons" name="trash-outline" (click)="delete(schedule)"></ion-icon>
-                  </ion-card>
-              </ion-list>
-          </ion-col>
-      </ion-row>
-      <ion-row class="ion-justify-content-center">
-          <ion-button routerLink="/coordenador-cadastro-agenda" size="large" style="--background: brown; cursor: pointer; --border-radius: 6px; font-weight: bold; margin: auto;">
-              Cadastrar
-          </ion-button>
-      </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="6">
+        <ion-select placeholder="Selecione a turma" [(ngModel)]="selectedTeamId">
+          <ion-select-option *ngFor="let team of teams" [value]="team.id">
+            {{ teamCourseMap[team.id] | titlecase }} - {{ team.period | titlecase }} - {{ team.semester }}º semestre
+          </ion-select-option>
+          <ion-select-option value="0" *ngIf="teams.length === 0" disabled>Nenhuma turma cadastrada.</ion-select-option>
+        </ion-select>
+
+        <ion-button expand="full" color="primary" class="ion-margin-top" (click)="navigateToSelectedTeam()">
+          Continuar
+        </ion-button>
+      </ion-col>
+    </ion-row>
   </ion-grid>
-
 </ion-content>
