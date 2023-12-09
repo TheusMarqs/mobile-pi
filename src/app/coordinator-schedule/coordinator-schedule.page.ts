@@ -18,7 +18,7 @@ import { TimeService } from '../time.service';
 @Component({
   selector: 'app-coordinator-schedule',
   templateUrl: './coordinator-schedule.page.html',
-  styleUrls: ['./coordinator-schedule.page.scss'],
+  styleUrls: ['./coordinator-schedule.page.scss', '../app.component.scss'],
 })
 export class CoordinatorSchedulePage implements OnInit {
 
@@ -196,14 +196,18 @@ export class CoordinatorSchedulePage implements OnInit {
 
 
   create(id: number) {
-    const idTeam = Number(this.route.snapshot.paramMap.get("id"));
-    this.router.navigate(['coordenador/cadastro-agendamento/', idTeam, id]);
+    this.setOpen(false);
+  
+    setTimeout(() => {
+      const idTeam = Number(this.route.snapshot.paramMap.get("id"));
+      this.router.navigate(['coordenador-cadastro-agenda', idTeam, id]);
+    }, 0);
   }
 
   edit(schedule: Schedule) {
     const idTeam = Number(this.route.snapshot.paramMap.get("id"));
     const dayOfWeekId = this.getDayOfWeekId(schedule.weekday);
-    this.router.navigate(['coordenador/atualizar-agendamento', idTeam, dayOfWeekId]);
+    this.router.navigate(['coordenador-atualizar-agenda', idTeam, dayOfWeekId]);
   }
 
   getDayOfWeekId(dayOfWeek: string): number {

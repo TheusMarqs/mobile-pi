@@ -116,17 +116,17 @@ const routes: Routes = [
     loadChildren: () => import('./coordinator-register-professors/coordinator-register-professors.module').then( m => m.CoordinatorRegisterProfessorsPageModule)
   },
   {
-    path: 'coordenador-cadastro-agenda',
+    path: 'coordenador-cadastro-agenda/:teamId/:id',
+    loadChildren: () => import('./coordinator-register-schedule/coordinator-register-schedule.module').then( m => m.CoordinatorRegisterSchedulePageModule)
+  },
+  {
+    path: 'coordenador-atualizar-agenda/:teamId/:id',
     loadChildren: () => import('./coordinator-register-schedule/coordinator-register-schedule.module').then( m => m.CoordinatorRegisterSchedulePageModule)
   },
   {
     path: 'coordenador-agenda/:id',
     loadChildren: () => import('./coordinator-schedule/coordinator-schedule.module').then( m => m.CoordinatorSchedulePageModule)
-  }
-
-
-
-
+  },
 
 
 ];

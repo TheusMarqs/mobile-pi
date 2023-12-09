@@ -7,7 +7,7 @@ import { Schedule } from './Schedule';
   providedIn: 'root'
 })
 export class ScheduleService {
-  url = "http://localhost:8080/Schedules";
+  url = "http://localhost:8080/schedules";
   constructor(private http: HttpClient) { }
 
   getSchedules(): Observable<Schedule[]> {
@@ -18,8 +18,8 @@ export class ScheduleService {
     return this.http.get<Schedule>(`${this.url}/${id}`);
   }
 
-  save(Schedule: Schedule): Observable<Schedule> {
-    return this.http.post<Schedule>(this.url, Schedule);
+  save(schedule: Schedule): Observable<Schedule> {
+    return this.http.post<Schedule>(this.url, schedule);
   }
 
   update(schedules: Schedule[], weekDayId: number): Observable<Schedule[]> {

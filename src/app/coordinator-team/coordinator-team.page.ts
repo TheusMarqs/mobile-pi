@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-coordinator-team',
   templateUrl: './coordinator-team.page.html',
-  styleUrls: ['./coordinator-team.page.scss'],
+  styleUrls: ['./coordinator-team.page.scss', '../app.component.scss'],
 })
 export class CoordinatorTeamPage implements OnInit {
   teams: Team[] = [];

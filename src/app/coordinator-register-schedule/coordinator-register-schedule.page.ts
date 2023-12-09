@@ -39,7 +39,8 @@ export class CoordinatorRegisterSchedulePage implements OnInit {
     private scheduleService: ScheduleService,
     private route: ActivatedRoute,
     private router: Router,
-    private timeService: TimeService
+    private timeService: TimeService,
+
   ) {
     this.formGroupSchedule = formBuilder.group({
       scheduleArray: this.formBuilder.array([])
@@ -52,15 +53,14 @@ export class CoordinatorRegisterSchedulePage implements OnInit {
     this.loadDisciplines();
     this.loadProfessors();
 
-    const currentUrl = this.route.snapshot.url.join('/');
+    const currentUrl = this.router.url;
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
-    const urlSegments = this.route.snapshot.url;
+    const firstId = Number(this.route.snapshot.paramMap.get('teamId'));
 
-    const id1 = Number(urlSegments[2]);
 
-    if (urlSegments) {
-      this.getTeamByUrl(id1)
+    if (firstId) {
+      this.teamId = firstId;
     }
 
     if (id) {
@@ -68,10 +68,10 @@ export class CoordinatorRegisterSchedulePage implements OnInit {
       this.showDayById(id);
     }
 
-    if (currentUrl.includes('atualizar-agendamento') && this.teamId !== 0) {
+    if (currentUrl.includes('atualizar-agenda') && this.teamId !== 0) {
       this.getScheduleById(id);
     }
-}
+  }
 
 
 
@@ -80,12 +80,9 @@ export class CoordinatorRegisterSchedulePage implements OnInit {
   }
 
   goBack() {
-    const urlSegments = this.route.snapshot.url;
-    const id1 = Number(urlSegments[2]);
-    const id2 = Number(urlSegments[3]);
-    const selectedId = isNaN(id1) ? id2 : id1;
+    const firstId = Number(this.route.snapshot.paramMap.get('teamId'));
 
-    this.router.navigate(['coordenador/exibir-agendamento', selectedId]);
+    this.router.navigate(['coordenador-agenda', firstId]);
   }
 
 
@@ -133,6 +130,7 @@ export class CoordinatorRegisterSchedulePage implements OnInit {
 
 
   save() {
+    console.log('Valor de this.teamId:', this.teamId);
     this.submitted = true;
     const scheduleArray = this.formGroupSchedule.value.scheduleArray
       .filter((scheduleItem: any) => this.isScheduleItemFilled(scheduleItem))

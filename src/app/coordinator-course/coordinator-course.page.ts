@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-coordinator-course',
   templateUrl: './coordinator-course.page.html',
-  styleUrls: ['./coordinator-course.page.scss'],
+  styleUrls: ['./coordinator-course.page.scss', '../app.component.scss'],
 })
 export class CoordinatorCoursePage implements OnInit {
   courses: Course[] = [];

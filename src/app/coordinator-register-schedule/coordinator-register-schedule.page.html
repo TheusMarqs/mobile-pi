@@ -31,46 +31,52 @@
   </ion-toolbar>
 </ion-header>
 
-
-<ion-grid>
-  <ion-row class="ion-justify-content-center">
-    <div class="row mt-5">
-      <div class="col-6 m-auto">
-        <form formGroup="formGroupSchedule">
-          <div formArrayName="scheduleArray" class="row mt-5">
+<ion-content>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="6">
+        <h1>{{weekDay}}</h1>
+        <ion-button style="--background: brown;" class="btn ion-margin-top" (click)="goBack()">
+          Voltar
+        </ion-button>
+        <form [formGroup]="formGroupSchedule">
+          <div formArrayName="scheduleArray">
             <div *ngFor="let schedule of getScheduleArrayControls(); let i = index">
-              <div formGroupName="i">
+              <div [formGroupName]="i">
                 <div class="mb-3">
                   <div class="display-6 text-center">
                     <br>
-                    <h1 style="color: brown; font-weight: bold;">Cadastro de Professores</h1>
                   </div>
                 </div>
                 <br>
                 <ion-list>
                   <ion-item>
+                    <ion-label>Horário</ion-label>
+                    <ion-select formControlName="time" class="form-select">
+                      <ion-select-option *ngFor="let time of times" [value]="time.id">
+                        {{ time.time }}
+                      </ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                </ion-list>
+                <ion-list>
+                  <ion-item>
+                    <ion-label>Sala</ion-label>
                     <ion-select formControlName="classroom" class="form-select">
-                      <ion-select-option *ngFor="let classroom of classrooms" value="{{classroom.id}}">
+                      <ion-select-option *ngFor="let classroom of classrooms" [value]="classroom.id">
                         {{ classroom.type | titlecase }} - {{classroom.number}}
                       </ion-select-option>
                     </ion-select>
                   </ion-item>
                 </ion-list>
                 <br>
-                <ion-list>
-                  <ion-item>
-                    <ion-select formControlName="time" class="form-select">
-                      <ion-select-option *ngFor="let time of times" value="{{time.id}}">
-                        {{ time.time }}
-                      </ion-select-option>
-                    </ion-select>
-                  </ion-item>
-                </ion-list>
+
                 <br>
                 <ion-list>
                   <ion-item>
+                    <ion-label>Disciplina</ion-label>
                     <ion-select formControlName="discipline" class="form-select">
-                      <ion-select-option *ngFor="let discipline of disciplines" value="{{discipline.id}}">
+                      <ion-select-option *ngFor="let discipline of disciplines" [value]="discipline.id">
                         {{ discipline.name | titlecase }}
                       </ion-select-option>
                     </ion-select>
@@ -79,27 +85,29 @@
                 <br>
                 <ion-list>
                   <ion-item>
+                    <ion-label>Professor</ion-label>
                     <ion-select formControlName="professor" class="form-select">
-                      <ion-select-option *ngFor="let professor of professors" value="{{professor.id}}">
+                      <ion-select-option *ngFor="let professor of professors" [value]="professor.id">
                         {{ professor.name | titlecase }}
                       </ion-select-option>
                     </ion-select>
                   </ion-item>
                 </ion-list>
                 <br>
-                <div class="mb-3 d-flex justify-content-end gap-2">
-                  <ion-button style=" cursor: pointer; --background: brown;" *ngIf="isEditing === false" class="btn"
-                    (click)="save()">Salvar</ion-button>
-                  <ion-button style=" cursor: pointer; --background: brown;" *ngIf="isEditing === true" class="btn"
-                    (click)="save()">Atualizar</ion-button>
-                  <ion-button style=" cursor: pointer; --background: brown;" class="btn btn-danger"
-                    (click)="cancel()">Cancelar</ion-button>
-                </div>
+
               </div>
             </div>
           </div>
+          <div class="mb-3 d-flex justify-content-end gap-2">
+            <ion-button style="cursor: pointer; --background: brown;" *ngIf="isEditing === false" class="btn"
+              (click)="save()">Salvar</ion-button>
+            <ion-button style="cursor: pointer; --background: brown;" *ngIf="isEditing === true" class="btn"
+              (click)="save()">Atualizar</ion-button>
+            <ion-button style="cursor: pointer; --background: brown;" class="btn btn-danger"
+              (click)="cancel()">Cancelar</ion-button>
+          </div>
         </form>
-      </div>
-    </div>
-  </ion-row>
-</ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

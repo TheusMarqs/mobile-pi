@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-coordinator-time',
   templateUrl: './coordinator-time.page.html',
-  styleUrls: ['./coordinator-time.page.scss'],
+  styleUrls: ['./coordinator-time.page.scss', '../app.component.scss'],
 })
 export class CoordinatorTimePage implements OnInit {
   times: Time[] = [];

@@ -40,10 +40,6 @@
     <br>
 
     <ion-row class="ion-justify-content-center">
-      <ion-searchbar style="width: 500px; margin-right: 760px; margin-bottom: 30px;" animated="true" placeholder="Animated"></ion-searchbar>
-    </ion-row>
-
-    <ion-row class="ion-justify-content-center">
       <ion-col size="6">
         <ion-select placeholder="Selecione a turma" [(ngModel)]="selectedTeamId">
           <ion-select-option *ngFor="let team of teams" [value]="team.id">
