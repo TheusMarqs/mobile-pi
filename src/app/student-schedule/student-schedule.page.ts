@@ -1,27 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Classroom } from '../Classroom';
-import { ClassroomService } from '../classroom.service';
 import { Course } from '../Course';
-import { CourseService } from '../course.service';
 import { Discipline } from '../Discipline';
-import { DisciplineService } from '../discipline.service';
 import { Professor } from '../Professor';
-import { ProfessorService } from '../professor.service';
 import { Schedule } from '../Schedule';
-import { ScheduleService } from '../schedule.service';
 import { Team } from '../Team';
+import { ClassroomService } from '../classroom.service';
+import { CourseService } from '../course.service';
+import { DisciplineService } from '../discipline.service';
+import { ProfessorService } from '../professor.service';
+import { ScheduleService } from '../schedule.service';
 import { TeamService } from '../team.service';
-import { Time } from '../Time';
 import { TimeService } from '../time.service';
+import { Time } from '../Time';
 
 @Component({
-  selector: 'app-coordinator-schedule',
-  templateUrl: './coordinator-schedule.page.html',
-  styleUrls: ['./coordinator-schedule.page.scss', '../app.component.scss'],
+  selector: 'app-student-schedule',
+  templateUrl: './student-schedule.page.html',
+  styleUrls: ['./student-schedule.page.scss'],
 })
-export class CoordinatorSchedulePage implements OnInit {
+export class StudentSchedulePage implements OnInit {
 
+ 
   teams: Team[] = [];
   schedules: Schedule[] = [];
   professors: Professor[] = [];
@@ -74,9 +75,6 @@ export class CoordinatorSchedulePage implements OnInit {
 
   filterByTeam(teamId: number) {
     const weekdaysOrder = ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
-
-    console.log('Team ID:', teamId);
-    console.log('Schedules:', this.schedules);
 
     this.filteredSchedules = this.schedules
       .filter(schedule => schedule.team === teamId)
@@ -173,7 +171,6 @@ export class CoordinatorSchedulePage implements OnInit {
   
     return result;
   }
-
   getCourseName(courseId: number) {
     this.courseService.getCourseName(courseId).subscribe({
       next: (courseName) => {
@@ -202,38 +199,5 @@ export class CoordinatorSchedulePage implements OnInit {
         }
       },
     });
-  }
-
-
-  create(id: number) {
-    this.setOpen(false);
-  
-    setTimeout(() => {
-      const idTeam = Number(this.route.snapshot.paramMap.get("id"));
-      this.router.navigate(['coordenador-cadastro-agenda', idTeam, id]);
-    }, 0);
-  }
-
-  edit(schedule: Schedule) {
-    const idTeam = Number(this.route.snapshot.paramMap.get("id"));
-    const dayOfWeekId = this.getDayOfWeekId(schedule.weekday);
-    this.router.navigate(['coordenador-atualizar-agenda', idTeam, dayOfWeekId]);
-  }
-
-  getDayOfWeekId(dayOfWeek: string): number {
-    const weekdaysOrder = ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
-    return weekdaysOrder.indexOf(dayOfWeek) + 1;
-  }
-
-  delete(schedules: Schedule) {
-    this.scheduleService.delete(schedules).subscribe({
-      next: () => this.loadSchedules()
-    });
-  }
-
-  isModalOpen = false;
-
-  setOpen(isOpen: boolean) {
-    this.isModalOpen = isOpen;
   }
 }

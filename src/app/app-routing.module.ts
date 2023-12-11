@@ -127,6 +127,16 @@ const routes: Routes = [
     path: 'coordenador-agenda/:id',
     loadChildren: () => import('./coordinator-schedule/coordinator-schedule.module').then( m => m.CoordinatorSchedulePageModule)
   },
+  {
+    path: 'aluno-agenda/:id',
+    loadChildren: () => import('./student-schedule/student-schedule.module').then( m => m.StudentSchedulePageModule)
+  },
+  {
+    path: 'aluno-escolher-professor',
+    loadChildren: () => import('./student-choose-professor/student-choose-professor.module').then( m => m.StudentChooseProfessorPageModule)
+  },
+
+
 
 
 ];

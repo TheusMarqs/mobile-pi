@@ -1,102 +1,97 @@
 <ion-menu contentId="main-content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title style="color: brown; font-weight: bold;">Fatec</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <ion-header>
+        <ion-toolbar>
+            <ion-title style="color: brown; font-weight: bold;">Fatec</ion-title>
+        </ion-toolbar>
+    </ion-header>
 
-  <ion-content>
-    <ion-list>
-      <ion-item routerLink="/home-coordenador">Home</ion-item>
-      <ion-item routerLink="/coordenador-disciplina">Disciplina</ion-item>
-      <ion-item routerLink="/coordenador-professores">Professores</ion-item>
-      <ion-item routerLink="/coordenador-turma">Turmas</ion-item>
-      <ion-item routerLink="/coordenador-curso">Cursos</ion-item>
-      <ion-item routerLink="/coordenador-sala">Salas</ion-item>
-      <ion-item routerLink="/coordenador-horarios">Horário</ion-item>
-      <ion-item routerLink="/home" style="color: brown;">Sair</ion-item>
-    </ion-list>
-  </ion-content>
+    <ion-content>
+        <ion-list>
+            <ion-item routerLink="/home-coordenador">Home</ion-item>
+            <ion-item routerLink="/coordenador-disciplina">Disciplina</ion-item>
+            <ion-item routerLink="/coordenador-professores">Professores</ion-item>
+            <ion-item routerLink="/coordenador-turma">Turmas</ion-item>
+            <ion-item routerLink="/coordenador-curso">Cursos</ion-item>
+            <ion-item routerLink="/coordenador-sala">Salas</ion-item>
+            <ion-item routerLink="/coordenador-horarios">Horário</ion-item>
+            <ion-item routerLink="/home" style="color: brown;">Sair</ion-item>
+        </ion-list>
+    </ion-content>
 </ion-menu>
 
 <ion-router-outlet id="main-content"></ion-router-outlet>
 
 <ion-header>
-  <ion-toolbar>
-    <ion-title style="color: brown; font-weight: bold;">Fatec</ion-title>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title style="color: brown; font-weight: bold;">Fatec</ion-title>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 
 
 <ion-content [fullscreen]="true">
-  <ion-content class="ion-padding">
-    <ion-row>
-      <ion-col size="3"></ion-col>
-      <ion-col size="6">
-        <div *ngIf="teamById" class="ion-text-center ion-margin-top ">
-          <h1>
-            {{ courseById | titlecase }} - {{ teamById.period | titlecase }} - {{ teamById.semester }}º semestre
-          </h1>
-        </div>
-        <ion-button color="#B02A37" class="ion-margin-top btn-fatec" [routerLink]="['/home-coordenador']">
-          Voltar
-        </ion-button>
+    <ion-content class="ion-padding">
+        <ion-row>
+            <ion-col size="2"></ion-col>
+            <ion-col size="8">
+                <div *ngIf="teamById" class="ion-text-center ion-margin-top ">
+                    <h1>
+                        {{ courseById | titlecase }} - {{ teamById.period | titlecase }} - {{ teamById.semester }}º semestre
+                    </h1>
+                </div>
+                <ion-button style="--background: brown;" class="ion-margin-top" [routerLink]="['/home-coordenador']">
+                    Voltar
+                </ion-button>
 
 
-        <ion-list  *ngIf="schedules.length !== 0">
-          <ion-item *ngFor="let schedule of filteredSchedules">
-            <ion-label>{{ schedule.id }}</ion-label>
-            <ion-label>{{ schedule.weekday | titlecase }}</ion-label>
-            <ion-label>{{ getTimeString(schedule.id) }}</ion-label>
-            <ion-label>{{ getClassroomNumber(schedule.id) }}</ion-label>
-            <ion-label>{{ getProfessorName(schedule.id) | titlecase }}</ion-label>
-            <ion-label>{{ getDisciplineName(schedule.id) | titlecase }}</ion-label>
-            <ion-icon class="optionIcons" name="create-outline" (click)="edit(schedule)"></ion-icon>
-            <ion-icon class="optionIcons" name="trash-outline" (click)="delete(schedule)"></ion-icon>
-          </ion-item>
-          
-        </ion-list>
+                <ion-list *ngIf="schedules.length !== 0">
+                    <ion-item *ngFor="let schedule of filteredSchedules">
+                        <ion-label>{{ schedule.id }}</ion-label>
+                        <ion-label>{{ schedule.weekday | titlecase }}</ion-label>
+                        <ion-label>{{ getTimeString(schedule.id) }}</ion-label>
+                        <ion-label *ngIf="getClassroomInfo(schedule.id) as classroomInfo">{{ classroomInfo.type | titlecase}}-{{ classroomInfo.number }}</ion-label>
+                        <ion-label>{{ getProfessorName(schedule.id) | titlecase }}</ion-label>
+                        <ion-label>{{ getDisciplineName(schedule.id) | titlecase }}</ion-label>
+                        <ion-icon class="optionIcons" name="create-outline" (click)="edit(schedule)"></ion-icon>
+                        <ion-icon class="optionIcons" name="trash-outline" (click)="delete(schedule)"></ion-icon>
+                    </ion-item>
 
-        <ng-container *ngIf="schedules.length === 0">
-          <h1 class="ion-text-center ion-margin-top">Nenhum agendamento cadastrado para essa turma.</h1>
-        </ng-container>
+                </ion-list>
+
+                <ng-container *ngIf="schedules.length === 0">
+                    <h1 class="ion-text-center ion-margin-top">Nenhum agendamento cadastrado para essa turma.</h1>
+                </ng-container>
 
 
-        <ion-button class="btn-fatec ion-float-end ion-margin-top" color="#B02A37" (click)="setOpen(true)">Novo
-          agendamento</ion-button>
-        <ion-modal [isOpen]="isModalOpen">
-          <ng-template>
-            <ion-header>
-              <ion-toolbar>
-                <ion-title>Selecione o dia da semana</ion-title>
-                <ion-buttons slot="end">
+                <ion-button class="ion-float-end ion-margin-top" style="--background: brown;" (click)="setOpen(true)">Novo agendamento
+                </ion-button>
+                <ion-modal [isOpen]="isModalOpen">
+                    <ng-template>
+                        <ion-header>
+                            <ion-toolbar>
+                                <ion-title>Selecione o dia da semana</ion-title>
+                                <ion-buttons slot="end">
 
-                  <ion-button (click)="setOpen(false)">Close</ion-button>
-                </ion-buttons>
-              </ion-toolbar>
-            </ion-header>
-            <ion-content class="ion-padding">
-              <ion-button expand="full" class="btn-fatec ion-margin-bottom" color="#B02A37"
-                (click)="create(1)">Segunda</ion-button>
-              <ion-button expand="full" class="btn-fatec ion-margin-bottom" color="#B02A37"
-                (click)="create(2)">Terça</ion-button>
-              <ion-button expand="full" class="btn-fatec ion-margin-bottom" color="#B02A37"
-                (click)="create(3)">Quarta</ion-button>
-              <ion-button expand="full" class="btn-fatec ion-margin-bottom" color="#B02A37"
-                (click)="create(4)">Quinta</ion-button>
-              <ion-button expand="full" class="btn-fatec ion-margin-bottom" color="#B02A37"
-                (click)="create(5)">Sexta</ion-button>
-              <ion-button expand="full" class="btn-fatec" color="#B02A37" (click)="create(6)">Sábado</ion-button>
-            </ion-content>
-          </ng-template>
-        </ion-modal>
-      </ion-col>
-    </ion-row>
-  </ion-content>
+                                    <ion-button (click)="setOpen(false)">Close</ion-button>
+                                </ion-buttons>
+                            </ion-toolbar>
+                        </ion-header>
+                        <ion-content class="ion-padding">
+                            <ion-button expand="block" class="ion-margin-bottom" style="--background:brown;" (click)="create(1)">Segunda</ion-button>
+                            <ion-button expand="block" class="ion-margin-bottom" style="--background: brown;" (click)="create(2)">Terça</ion-button>
+                            <ion-button expand="block" class="ion-margin-bottom" style="--background: brown;" (click)="create(3)">Quarta</ion-button>
+                            <ion-button expand="block" class="ion-margin-bottom" style="--background: brown;" (click)="create(4)">Quinta</ion-button>
+                            <ion-button expand="block" class="ion-margin-bottom" style="--background: brown;" (click)="create(5)">Sexta</ion-button>
+                            <ion-button expand="block" style="--background: brown;" (click)="create(6)">Sábado</ion-button>
+                        </ion-content>
+                    </ng-template>
+                </ion-modal>
+            </ion-col>
+        </ion-row>
+    </ion-content>
 
 
 </ion-content>

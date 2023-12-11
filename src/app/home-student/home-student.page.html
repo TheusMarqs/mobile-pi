@@ -1,58 +1,52 @@
 <ion-menu contentId="main-content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title style="color: brown; font-weight: bold;">Fatec</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <ion-header>
+        <ion-toolbar>
+            <ion-title style="color: brown; font-weight: bold;">Fatec</ion-title>
+        </ion-toolbar>
+    </ion-header>
 
-  <ion-content>
-    <ion-list>
-      <ion-item routerLink="/home-aluno">Home</ion-item>
-      <ion-item routerLink="/aluno-aula">Minhas Aulas</ion-item>
-      <ion-item routerLink="/aluno-professores">Professores</ion-item>
-      <ion-item routerLink="/home" style="color: brown;">Sair</ion-item>
-    </ion-list>
-  </ion-content>
+    <ion-content>
+        <ion-list>
+            <ion-item routerLink="/home-coordenador">Home</ion-item>
+            <ion-item routerLink="/aluno-escolher-professor">Professores</ion-item>
+            <ion-item routerLink="/home" style="color: brown;">Sair</ion-item>
+        </ion-list>
+    </ion-content>
 </ion-menu>
 
 <ion-router-outlet id="main-content"></ion-router-outlet>
 
 <ion-header>
-  <ion-toolbar>
-    <ion-title style="color: brown; font-weight: bold;">Fatec</ion-title>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title style="color: brown; font-weight: bold;">Fatec</ion-title>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 
 <ion-content [fullscreen]="true">
 
-  <h1 class="ion-text-center" style="color: brown; font-weight: bold; font-size: 50px;">Curso</h1>
-  <br>
-  <br>
+    <ion-grid>
 
+        <br>
+        <h1 class="ion-text-center" style="color: rgb(0, 0, 0); font-weight: bold; font-size: 50px;">Agenda do aluno</h1>
+        <br>
 
-  <ion-grid>
-    <ion-row class="ion-justify-content-center">
-      <ion-col size="6" >
-        <ion-list>
-          <ion-item>
-            <ion-select label="Selecione o Curso">
-              <ion-select-option value="PI">PI</ion-select-option>
-              <ion-select-option value="BD">BD</ion-select-option>
-              <ion-select-option value="PAWM">PAWM</ion-select-option>
-            </ion-select>
-          </ion-item>
-        </ion-list>
-      </ion-col>
-    </ion-row>
-    <ion-row class="ion-justify-content-center">
-      <br>
-      <br>
-      <ion-button size="large" style="--background: brown; --border-radius: 6px; font-weight: bold; cursor: pointer; margin: auto;">Continuar</ion-button>
-    </ion-row>
-  </ion-grid>
+        <ion-row class="ion-justify-content-center">
+            <ion-col size="6">
+                <ion-select placeholder="Selecione a turma" [(ngModel)]="selectedTeamId">
+                    <ion-select-option *ngFor="let team of teams" [value]="team.id">
+                        {{ teamCourseMap[team.id] | titlecase }} - {{ team.period | titlecase }} - {{ team.semester }}º semestre
+                    </ion-select-option>
+                    <ion-select-option value="0" *ngIf="teams.length === 0" disabled>Nenhuma turma cadastrada.</ion-select-option>
+                </ion-select>
 
+                <ion-button expand="block" style="--background: brown;" class="ion-margin-top" (click)="navigateToSelectedTeam()">
+                    Continuar
+                </ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>
