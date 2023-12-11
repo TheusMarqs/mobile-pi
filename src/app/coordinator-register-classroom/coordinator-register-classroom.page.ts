@@ -10,7 +10,7 @@ import { ClassroomService } from '../classroom.service';
 })
 export class CoordinatorRegisterClassroomPage implements OnInit {
 
-  formGroupClassroom : FormGroup;
+  formGroupClassroom: FormGroup;
   submitted: boolean = false;
   isEditing: boolean = false;
 
@@ -20,9 +20,9 @@ export class CoordinatorRegisterClassroomPage implements OnInit {
 
     this.formGroupClassroom = formBuilder.group({
       id: [],
-      number: ['', [Validators.required, Validators.pattern(/\S/)]],
-      capacity: ['', [Validators.required, Validators.pattern]],
-      type: ['', [Validators.required, Validators.pattern(/\S/)]],
+      number: [, [Validators.required]],
+      type: ['', [Validators.required]],
+      capacity: [, [Validators.required]]
     });
   }
 
@@ -43,22 +43,23 @@ export class CoordinatorRegisterClassroomPage implements OnInit {
 
   save() {
     this.submitted = true;
-    if (this.isEditing) {
-      if (this.formGroupClassroom.valid) {
+    if (this.formGroupClassroom.valid) {
+      if (this.isEditing) {
+
         this.classroomService.update(this.formGroupClassroom.value).subscribe({
           next: () => {
             this.router.navigate(['coordenador-sala']);
           }
         })
       }
-    }
 
-    else {
-      this.classroomService.save(this.formGroupClassroom.value).subscribe({
-        next: () => {
-          this.router.navigate(['coordenador-sala']);
-        }
-      })
+      else {
+        this.classroomService.save(this.formGroupClassroom.value).subscribe({
+          next: () => {
+            this.router.navigate(['coordenador-sala']);
+          }
+        })
+      }
     }
 
   }

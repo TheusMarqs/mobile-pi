@@ -10,7 +10,7 @@ import { ProfessorService } from '../professor.service';
 })
 export class CoordinatorRegisterProfessorsPage implements OnInit {
 
-  formGroupProfessor : FormGroup;
+  formGroupProfessor: FormGroup;
   submitted: boolean = false;
   isEditing: boolean = false;
 
@@ -20,10 +20,10 @@ export class CoordinatorRegisterProfessorsPage implements OnInit {
 
     this.formGroupProfessor = formBuilder.group({
       id: [],
-      name: ['', [Validators.required, Validators.pattern(/\S/)]],
+      name: ['', [Validators.required, Validators.pattern(/^[A-Za-záâãàéêíóôõúçñ ]+$/), Validators.pattern(/\S/)]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.pattern(/\S/)]],
-      education: ['', [Validators.required, Validators.pattern(/\S/)]],
+      password: ['', [Validators.required, Validators.pattern(/\S/), Validators.minLength(8)]],
+      education: ['', [Validators.required, Validators.pattern(/^[A-Za-záâãàéêíóôõúçñ ]+$/), Validators.pattern(/\S/)]],
       status: [false]
     });
   }
@@ -45,22 +45,23 @@ export class CoordinatorRegisterProfessorsPage implements OnInit {
 
   save() {
     this.submitted = true;
-    if (this.isEditing) {
-      if (this.formGroupProfessor.valid) {
+    if (this.formGroupProfessor.valid) {
+      if (this.isEditing) {
+
         this.professorService.update(this.formGroupProfessor.value).subscribe({
           next: () => {
             this.router.navigate(['coordenador-professores']);
           }
         })
       }
-    }
 
-    else {
-      this.professorService.save(this.formGroupProfessor.value).subscribe({
-        next: () => {
-          this.router.navigate(['coordenador-professores']);
-        }
-      })
+      else {
+        this.professorService.save(this.formGroupProfessor.value).subscribe({
+          next: () => {
+            this.router.navigate(['coordenador-professores']);
+          }
+        })
+      }
     }
 
   }

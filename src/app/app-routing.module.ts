@@ -24,10 +24,6 @@ const routes: Routes = [
     loadChildren: () => import('./student-login/student-login.module').then( m => m.StudentLoginPageModule)
   },
   {
-    path: 'aluno-professores',
-    loadChildren: () => import('./student-professors/student-professors.module').then( m => m.StudentProfessorsPageModule)
-  },
-  {
     path: 'cadastro-aluno',
     loadChildren: () => import('./register-student/register-student.module').then( m => m.RegisterStudentPageModule)
   },
@@ -135,6 +131,11 @@ const routes: Routes = [
     path: 'aluno-escolher-professor',
     loadChildren: () => import('./student-choose-professor/student-choose-professor.module').then( m => m.StudentChooseProfessorPageModule)
   },
+  {
+    path: 'aluno-agenda-professor/:id',
+    loadChildren: () => import('./student-professor-schedule/student-professor-schedule.module').then( m => m.StudentProfessorSchedulePageModule)
+  },
+
 
 
 

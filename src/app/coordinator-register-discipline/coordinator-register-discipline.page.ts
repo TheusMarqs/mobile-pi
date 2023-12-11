@@ -12,7 +12,7 @@ import { Course } from '../Course';
 })
 export class CoordinatorRegisterDisciplinePage implements OnInit {
 
-  formGroupDiscipline : FormGroup;
+  formGroupDiscipline: FormGroup;
   submitted: boolean = false;
   isEditing: boolean = false;
   courses: Course[] = [];
@@ -24,9 +24,9 @@ export class CoordinatorRegisterDisciplinePage implements OnInit {
 
     this.formGroupDiscipline = formBuilder.group({
       id: [],
-      name: ['', [Validators.required, Validators.pattern(/\S/)]],
-      workload: ['', [Validators.required, Validators.pattern]],
-      course: ['', [Validators.required, Validators.pattern(/\S/)]],
+      name: ['', [Validators.required, Validators.pattern(/^[A-Za-záâãàéêíóôõúçñ ]+$/), Validators.pattern(/\S/)]],
+      workload: [, [Validators.required]],
+      course: [, [Validators.required]],
     });
   }
 
@@ -56,22 +56,23 @@ export class CoordinatorRegisterDisciplinePage implements OnInit {
 
   save() {
     this.submitted = true;
-    if (this.isEditing) {
-      if (this.formGroupDiscipline.valid) {
+    if (this.formGroupDiscipline.valid) {
+      if (this.isEditing) {
+
         this.disciplineService.update(this.formGroupDiscipline.value).subscribe({
           next: () => {
             this.router.navigate(['coordenador-disciplina']);
           }
         })
       }
-    }
 
-    else {
-      this.disciplineService.save(this.formGroupDiscipline.value).subscribe({
-        next: () => {
-          this.router.navigate(['coordenador-disciplina']);
-        }
-      })
+      else {
+        this.disciplineService.save(this.formGroupDiscipline.value).subscribe({
+          next: () => {
+            this.router.navigate(['coordenador-disciplina']);
+          }
+        })
+      }
     }
 
   }

@@ -28,10 +28,10 @@ export class CoordinatorRegisterTeamPage implements OnInit {
 
     this.formGroupTeam = formBuilder.group({
       id: [],
-      semester: ['', [Validators.required, Validators.pattern(/\S/)]],
-      period: ['', [Validators.required, Validators.pattern]],
-      course: ['', [Validators.required, Validators.pattern(/\S/)]],
-      students: ['', [Validators.required, Validators.pattern(/\S/)]],
+      course: [, [Validators.required]],
+      students: [, [Validators.required]],
+      semester: [, [Validators.required]],
+      period: ['', [Validators.required, Validators.pattern(/^[A-Za-záâãàéêíóôõúçñ ]+$/), Validators.pattern(/\S/)]],
       time: this.formBuilder.array([]),
     });
   }

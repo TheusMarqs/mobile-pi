@@ -10,7 +10,7 @@ import { TimeService } from '../time.service';
 })
 export class CoordinatorRegisterTimePage implements OnInit {
 
-  formGroupTime : FormGroup;
+  formGroupTime: FormGroup;
   submitted: boolean = false;
   isEditing: boolean = false;
 
@@ -41,22 +41,23 @@ export class CoordinatorRegisterTimePage implements OnInit {
 
   save() {
     this.submitted = true;
-    if (this.isEditing) {
-      if (this.formGroupTime.valid) {
+    if (this.formGroupTime.valid) {
+      if (this.isEditing) {
+
         this.timeService.update(this.formGroupTime.value).subscribe({
           next: () => {
             this.router.navigate(['coordenador-horario']);
           }
         })
       }
-    }
 
-    else {
-      this.timeService.save(this.formGroupTime.value).subscribe({
-        next: () => {
-          this.router.navigate(['coordenador-horario']);
-        }
-      })
+      else {
+        this.timeService.save(this.formGroupTime.value).subscribe({
+          next: () => {
+            this.router.navigate(['coordenador-horario']);
+          }
+        })
+      }
     }
 
   }
